@@ -2,6 +2,8 @@ const { exec } = require("child_process");
 const express = require("express");
 const { cookieName } = require("../consts");
 const { getDirectory } = require("../utils")
+const { v4: uuidv4 } = require("uuid");
+
 var router = express.Router();
 
 router.post("/command", function (req, res) {
@@ -29,6 +31,11 @@ router.get("/commands", (req, res) => {
   const commands = ["ls", "rm"];
   res.status(200).send(commands);
 });
+
+router.get("/cookie", (req, res) => {
+    const cookie = uuidv4()
+    res.status(200).send(cookie);
+  });
 
 router.post("/upload", function (req, res) {
   const directory = getDirectory(req.cookies[cookieName]);
