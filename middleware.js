@@ -4,12 +4,11 @@ const { getDirectory } = require("./utils");
 var fs = require("fs");
 
 const cookieHandler = function (req, res, next) {
- 
   let cookie = req.cookies[cookieName];
   let id;
   if (!cookie) {
     id = uuidv4();
-    res.cookie(cookieName, id, {  httpOnly: true });
+    res.cookie(cookieName, id, { httpOnly: true, sameSite: "none" });
   }
   const cookies = { ...req.cookies, [cookieName]: cookie || id };
   req.cookies = cookies;
