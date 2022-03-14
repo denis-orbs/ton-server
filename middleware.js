@@ -9,8 +9,8 @@ const cookieHandler = function (req, res, next) {
   if (!cookie) {
     id = uuidv4();
     res.cookie(cookieName, id, {
-        secure: false,
-        httpOnly: false,
+        secure: true,
+        httpOnly: true,
     });
   }
   const cookies = { ...req.cookies, [cookieName]: cookie || id };
