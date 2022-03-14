@@ -11,10 +11,7 @@ const router = require("./routes/command");
 const app = express();
 const port = process.env.PORT || 5500;
 
-const corsConfig = {
-  credentials: true,
-  origin: true,
-};
+
 app.use(
   fileupload({
     createParentPath: true,
@@ -25,11 +22,10 @@ app.use(
   })
 );
 app.use(express.static("files"));
-app.use(cors(corsConfig));
+app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(cookieParser());
-app.set('coo')
 app.use(cookieHandler);
 app.use(detectRepo);
 app.set('trust proxy', 1) 
