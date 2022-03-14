@@ -17,13 +17,11 @@ router.post("/command", function (req, res) {
     exec(`cd ${directory} && ${command}`, (error, stdout, stderr) => {
       if (error) {
         console.error(`exec error: ${error}`);
-        res.send("error");
       }
-
       res.send(stdout);
     });
   } catch (error) {
-    res.send({ error });
+    res.send(error.message);
   }
 });
 

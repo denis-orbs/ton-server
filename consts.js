@@ -1,3 +1,3 @@
-const cookieName = 'TON_SHELL_ID'
+const cookieName = 'ton_shell_id'
 
 module.exports = { cookieName }
