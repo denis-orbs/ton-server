@@ -1,7 +1,7 @@
 {
   "scripts": {
-    "start": "node server.js",
-    "nodemon": "nodemon sudo node server.js"
+    "start": "node index.js",
+    "nodemon": "nodemon sudo node index.js"
 
   },
   "dependencies": {
