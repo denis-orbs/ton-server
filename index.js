@@ -9,7 +9,7 @@ const { cookieHandler, detectRepo } = require("./middleware");
 const router = require("./routes/command");
 
 const app = express();
-const port = 5500;
+const port = process.env.PORT || 5500;
 
 const corsConfig = {
   credentials: true,
