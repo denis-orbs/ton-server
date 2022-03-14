@@ -30,10 +30,10 @@ app.use(cors(corsConfig));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(cookieParser());
-
+app.set('coo')
 app.use(cookieHandler);
 app.use(detectRepo);
-
+app.set('trust proxy', 1) 
 app.use("/", router);
 
 app.listen(port, () => {
