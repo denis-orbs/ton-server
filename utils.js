@@ -1,7 +1,7 @@
 const baseDirectory = "repo";
 
 const getDirectory = (id) => {
-  return `./${baseDirectory}/${id}`;
+  return `./${id}`;
 };
 
 module.exports = { getDirectory };
