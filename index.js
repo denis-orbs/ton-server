@@ -24,7 +24,6 @@ app.use(
     abortOnLimit: true,
   })
 );
-app.use(cors({credentials: true, origin: '*'}));
 app.use(express.static("files"));
 app.use(cors(corsConfig));
 app.use(bodyParser.urlencoded({ extended: false }));
