@@ -24,6 +24,7 @@ app.use(
     abortOnLimit: true,
   })
 );
+app.enable('trust proxy')
 app.use(express.static("files"));
 app.use(cors(corsConfig));
 app.use(bodyParser.urlencoded({ extended: false }));
