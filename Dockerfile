@@ -42,5 +42,5 @@ WORKDIR /node-server
 COPY  ./node-server .
 
 CMD npm install
-CMD npm start
+CMD npm run start
 
