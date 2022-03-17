@@ -1,17 +1,15 @@
-const { exec } = require("child_process");
-const express = require("express");
-const { cookieName } = require("../consts");
-const { getDirectory } = require("../utils")
+import { exec } from "child_process";
+import express from "express";
 const { v4: uuidv4 } = require("uuid");
 
 var router = express.Router();
 
 router.post("/command", function (req, res) {
   const { command } = req.body;
+  const { directory } = req;
   if (!command) {
     res.send("Command missing");
   }
-  const directory = getDirectory(req.cookies[cookieName]);
 
   try {
     exec(`cd ${directory} && ${command}`, (error, stdout, stderr) => {
@@ -31,16 +29,16 @@ router.get("/commands", (req, res) => {
 });
 
 router.get("/cookie", (req, res) => {
-    const cookie = uuidv4()
-    res.status(200).send(cookie);
-  });
+  const cookie = uuidv4();
+  res.status(200).send(cookie);
+});
 
 router.post("/upload", function (req, res) {
-  const directory = getDirectory(req.cookies[cookieName]);
+  const { directory } = req;
   if (!req.files) {
     return res.status(400).send("No files were uploaded.");
   }
-    console.log(req.files);
+  console.log(req.files);
   try {
     if (req.files.file) {
       const file = req.files.file;

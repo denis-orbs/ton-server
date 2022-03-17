@@ -1,5 +1,4 @@
 const express = require("express");
-const command = require("./routes/command");
 const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
 const fileupload = require("express-fileupload");
@@ -28,7 +27,6 @@ app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(cookieHandler);
 app.use(detectRepo);
-app.set('trust proxy', 1) 
 app.use("/", router);
 
 app.listen(port, () => {

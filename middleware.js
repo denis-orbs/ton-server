@@ -1,5 +1,4 @@
 const { cookieName } = require("./consts");
-const { v4: uuidv4 } = require("uuid");
 const { getDirectory } = require("./utils");
 var fs = require("fs");
 
@@ -16,6 +15,7 @@ const detectRepo = function (req, res, next) {
   if (!fs.existsSync(directory)) {
     fs.mkdirSync(directory);
   }
+  req.directory = directory
   next();
 };
 
