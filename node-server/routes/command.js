@@ -1,5 +1,5 @@
-import { exec } from "child_process";
-import express from "express";
+const {exec}  =  require( "child_process");
+const express =  require("express");
 const { v4: uuidv4 } = require("uuid");
 
 var router = express.Router();
