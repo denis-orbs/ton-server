@@ -35,13 +35,13 @@ RUN curl -sL https://deb.nodesource.com/setup_14.x | bash -
 
 RUN apt-get install nodejs -y
 
-RUN mkdir node-server
+RUN mkdir /node-server
 
 WORKDIR /node-server
 
 COPY  ./node-server .
 
-CMD npm install
+RUN npm install
 
 CMD npm run start
 
