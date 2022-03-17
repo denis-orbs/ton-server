@@ -27,4 +27,19 @@ RUN cmake --configure ..
 
 RUN cmake --build . --target lite-client
 
-WORKDIR /ton
+WORKDIR /
+
+RUN apt-get install curl
+
+RUN curl -sL https://deb.nodesource.com/setup_12.x | bash -
+
+RUN apt-get install nodejs -y
+
+RUN mkdir node-server
+
+WORKDIR /node-server
+
+COPY  ./node-server .
+
+CMD npm start
+
