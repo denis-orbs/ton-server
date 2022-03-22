@@ -16,15 +16,18 @@ WORKDIR /root/liteclient-build
 RUN cmake /root/ton
 RUN cmake --build . --target lite-client
 RUN cmake --build . --target func
-# RUN cmake --build . --target fift
+RUN cmake --build . --target fift
 
 
-
+RUN wget https://newton-blockchain.github.io/global.config.json
+RUN wget https://raw.githubusercontent.com/newton-blockchain/ton/master/crypto/smartcont/stdlib.fc
+RUN cp /root/ton/crypto/fift/lib /root/fift-lib
 
 
 WORKDIR /
 
 # RUN apt-get install curl
+ENV FIFTPATH=/root/fift-lib
 
 RUN curl -sL https://deb.nodesource.com/setup_14.x | bash -
 

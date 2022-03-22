@@ -1,0 +1,18 @@
+### func example for build using func and including stdlib.fc
+./func -APSR -o build/<name>.fif  ../ton/crypto/smartcont/stdlib.fc   src/<name>.fc 
+
+### Setting up FIFTPATH
+`export FIFTPATH=/root/fift-lib`
+
+### Fift execution example 
+`./fift -s fift-deployments/dex.fif 0 KILO.addr owner.addr 500 USDC.addr 0 DEX LP`
+the output of fift is out.boc
+`./fift -s <name>.fif <arg1> <arg2> <arg3>`
+
+
+exmaples of fift files
+https://github.com/newton-blockchain/ton/blob/master/crypto/smartcont/new-wallet.fif
+`fift -s new-wallet-v3.fif 0 1 mykey`
+
+### Publishing boc to the network
+./lite-client -C global.config.json -c "sendfile out.boc"

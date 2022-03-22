@@ -1,5 +1,6 @@
 {
   "scripts": {
-    "start": "docker run -p 81:5500 --rm -it $(docker build -q .)"
+    "docker:run": "docker run -p 81:5500  orbs/fift",
+    "docker:build": "docker build --platform linux/amd64  . -t orbs/fift"
   }
 }
