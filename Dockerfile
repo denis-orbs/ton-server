@@ -1,35 +1,30 @@
-FROM ubuntu as builder
+FROM ubuntu 
+ARG DEBIAN_FRONTEND=noninteractive
 
-ENV DEBIAN_FRONTEND noninteractive
 
-RUN apt-get update && \
-	apt-get install -y build-essential cmake clang openssl libssl-dev zlib1g-dev gperf wget git && \
-	rm -rf /var/lib/apt/lists/*
+RUN apt update
+RUN apt install git make cmake g++ libssl-dev zlib1g-dev wget curl -y
+ARG DEBIAN_FRONTEND=noninteractive
 
-ENV CC clang
-ENV CXX clang++
+WORKDIR /root
+RUN git clone --recursive https://github.com/newton-blockchain/ton.git
+WORKDIR /root/ton
 
-RUN apt-get update
-RUN apt-get install software-properties-common -y
+RUN mkdir /root/liteclient-build
+WORKDIR /root/liteclient-build
 
-WORKDIR /
-RUN git clone --recursive https://github.com/doronaviguy/ton
-WORKDIR /ton
-
-RUN git submodule update && git submodule init
-
-RUN rm -rf CMakeFiles CMakeCache.txt && \
-  mkdir build
-
-WORKDIR /ton/build
-
-RUN cmake --configure ..
-
+RUN cmake /root/ton
 RUN cmake --build . --target lite-client
+RUN cmake --build . --target func
+# RUN cmake --build . --target fift
+
+
+
+
 
 WORKDIR /
 
-RUN apt-get install curl
+# RUN apt-get install curl
 
 RUN curl -sL https://deb.nodesource.com/setup_14.x | bash -
 

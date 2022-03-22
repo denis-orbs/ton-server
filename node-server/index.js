@@ -2,14 +2,12 @@ const express = require("express");
 const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
 const fileupload = require("express-fileupload");
-
-var cors = require("cors");
-const { cookieHandler, detectRepo } = require("./middleware");
-const router = require("./routes/command");
+const cors = require("cors");
+const { cookieHandler, handleUserDirectory } = require("./middlewares");
+const router = require("./router");
 
 const app = express();
 const port = process.env.PORT || 5500;
-
 
 app.use(
   fileupload({
@@ -20,15 +18,17 @@ app.use(
     abortOnLimit: true,
   })
 );
+
 app.use(express.static("files"));
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(cookieParser());
+
 app.use(cookieHandler);
-app.use(detectRepo);
+app.use(handleUserDirectory);
 app.use("/", router);
 
 app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`);
+  console.log(`App listening on port ${port}`);
 });

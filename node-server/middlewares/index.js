@@ -1,6 +1,6 @@
-const { cookieName } = require("./consts");
-const { getDirectory } = require("./utils");
-var fs = require("fs");
+const { cookieName } =  require("../consts");
+const { getDirectory } =  require("../utils");
+const fs =  require("fs");
 
 const cookieHandler = function (req, res, next) {
   let cookie = req.headers[cookieName];
@@ -10,13 +10,13 @@ const cookieHandler = function (req, res, next) {
   next();
 };
 
-const detectRepo = function (req, res, next) {
+const handleUserDirectory = function (req, res, next) {
   const directory = getDirectory(req.cookies[cookieName]);
   if (!fs.existsSync(directory)) {
     fs.mkdirSync(directory);
   }
-  req.directory = directory
+  req.directory = directory;
   next();
 };
 
-module.exports = { cookieHandler, detectRepo };
+module.exports = { cookieHandler, handleUserDirectory };
